@@ -50,7 +50,7 @@ const Home = () => {
       <div className='flex justify-around mt-20'>
         <div className='flex flex-col justify-between'>
           <div>
-            <h1 className='text-[50px] font-bold'>Hey There, <br /> I'm Abhiyan </h1>
+            <h1 className='text-[50px] font-bold'>Hey There, <br /> I&apos;m Abhiyan </h1>
           </div>
           <div>
             <p className='underline text-orange-500 font-bold'>abhiyan1997@gmail.com </p>

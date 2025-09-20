@@ -146,9 +146,9 @@ const Home = () => {
             <p className='text-[20px] font-bold'>Email, call or complete the form to learn how I can solve your problems related to tech.</p>
             <span className='text-gray-500'>abhiyan1997@gmail.com</span>
             <div className='flex gap-10 mt-5'>
-              <Github></Github>
-              <Linkedin></Linkedin>
-              <Twitter></Twitter>
+              <Link href='https://github.com/abhiyan1997' target='_blank'><Github></Github></Link>
+              <Link href='https://www.linkedin.com/in/abhiyan1997/' target='_blank'><Linkedin></Linkedin></Link>
+              <Link href='http://x.com/abhiyan1997/' target='_blank'><Twitter></Twitter></Link>
             </div>
           </div>
 

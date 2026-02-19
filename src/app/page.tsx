@@ -1,10 +1,17 @@
 'use client'
-
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Bot, Code, Github, Linkedin, Twitter, Mail, ExternalLink, Menu, X, Terminal } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import Image from 'next/image'
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -18,20 +25,23 @@ const Home = () => {
       name: "Taska",
       description: "A trusted home services platform which connects users with verified service providers like electricians, plumbers, and cleaners across Nepal.",
       techStack: "React.js, Next.js, Tailwind CSS, Node.js, Express.js, MongoDB",
-      link: "https://github.com/abhiyan1997/taska"
+      link: "https://taskaapp.vercel.app/",
+      images: ["/project_ss/taska/1.png"]
     },
     {
       name: "Election 2082",
       description: "A secure, data-driven Next.js application displaying all candidates for Nepal’s 2082 HoR election. Features advanced search, filtering, multilingual support, and strict security.",
       techStack: "Next.js, React, Tailwind CSS, TypeScript",
-      link: "https://election-fptp-candidates-2082.vercel.app/"
+      link: "https://election-fptp-candidates-2082.vercel.app/",
+      images: ["/project_ss/election2082/1.png", "/project_ss/election2082/2.png"]
     },
     {
-      name: "HamroMat",
-      description: "Hamroमत is a simple online voting platform where people can cast their votes for candidates securely. Designed to streamline the voting process with straightforward tracking.",
-      techStack: "PHP, MYSQL, HTML, CSS",
-      link: "https://github.com/abhiyan1997/hamromat"
-    }
+      name: "LekhHaru",
+      description: "LekhHaru is an independent Nepali citizen journalism platform where writers publish thoughtful articles on social and political issues affecting Nepal, while readers access credible, organized national discourse in one open digital space.",
+      techStack: "Next.js, React, Tailwind CSS, MongoDB",
+      link: "https://lekhharu.vercel.app/",
+      images: ["/project_ss/lekhharu/1.avif", "/project_ss/lekhharu/2.avif"]
+    },
   ]
 
   return (
@@ -185,7 +195,33 @@ const Home = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
             {projectsList.map((project, idx) => (
               <div key={idx} className='group bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all flex flex-col h-full hover:border-orange-200'>
-                <div className='p-8 flex-1 flex flex-col'>
+                {/* Carousel - Full Bleed */}
+                <div className="w-full bg-slate-100 border-b border-slate-100 relative group/carousel">
+                  <Carousel className="w-full">
+                    <CarouselContent>
+                      {project.images.map((img, i) => (
+                        <CarouselItem key={i}>
+                          <div className="relative h-64 w-full bg-slate-50">
+                            <Image
+                              src={img}
+                              alt={`${project.name} screenshot ${i + 1}`}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    {project.images.length > 1 && (
+                      <>
+                        <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80 hover:bg-white border-0 shadow-md backdrop-blur-sm z-10" />
+                        <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80 hover:bg-white border-0 shadow-md backdrop-blur-sm z-10" />
+                      </>
+                    )}
+                  </Carousel>
+                </div>
+
+                <div className='p-6 flex-1 flex flex-col'>
                   <div className='flex justify-between items-start mb-4'>
                     <div className='p-3 bg-white rounded-xl shadow-sm group-hover:bg-orange-50 transition-colors'>
                       {project.name.includes('Election') ? <Terminal size={24} className='text-orange-500' /> : <Code size={24} className='text-orange-500' />}
@@ -193,6 +229,7 @@ const Home = () => {
                     <Link href={project.link} target='_blank' className='text-slate-400 hover:text-orange-500 transition-colors'>
                       <ExternalLink size={20} />
                     </Link>
+
                   </div>
 
                   <h3 className='text-xl font-bold text-slate-900 mb-3 group-hover:text-orange-600 transition-colors'>{project.name}</h3>
